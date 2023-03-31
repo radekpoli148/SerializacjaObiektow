@@ -1,6 +1,8 @@
 package serializacjaobiektow;
 
 import java.io.*;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 public class SerializacjaObiektow
 {
@@ -14,13 +16,13 @@ public class SerializacjaObiektow
         
         try
         {
-            ObjectOutputStream outS = new ObjectOutputStream(new FileOutputStream("baza.txt"));
+            ObjectOutputStream outS = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream("baza.txt")));
             
             outS.writeObject(towar);
             
             outS.close();
             
-            ObjectInputStream inS = new ObjectInputStream(new FileInputStream("baza.txt"));
+            ObjectInputStream inS = new ObjectInputStream(new GZIPInputStream(new FileInputStream("baza.txt")));
             
             Towar[] a = (Towar[])inS.readObject();
             
